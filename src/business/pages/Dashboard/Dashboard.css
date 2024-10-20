@@ -1,0 +1,9 @@
+.nav a {
+    color: #7284a0;
+    display: flex;
+    font-size: 14.8px;
+    gap: 0.875rem;
+    align-items: center;
+
+    margin: .7rem 0.3rem;
+}
