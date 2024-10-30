@@ -1,0 +1,64 @@
+.filter-form-container {
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: white;
+  padding: 3rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  color: #3c3c3c;
+}
+
+.filter-form h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.form-group {
+  margin-bottom: 2rem;
+}
+
+label {
+  font-weight: 400;
+  display: block;
+  margin-bottom: 8px;
+}
+
+input[type="number"],
+select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.checkbox-group label {
+  width: 50%;
+  margin-bottom: 10px;
+
+  font-weight: 300;
+}
+
+input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+.filter-btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.filter-btn:hover {
+  background-color: #0056b3;
+}
