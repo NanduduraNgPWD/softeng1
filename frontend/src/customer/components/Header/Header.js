@@ -33,7 +33,7 @@ function Header({position,top, color}) {
       <div className="navbar">
         <ul className="nav-links left-nav">
           <li><Link to="/">Home</Link></li>
-          <li><Link to="/Listing">Listing</Link></li>
+          <li><Link to="/Motorcycles">Motorcycles</Link></li>
           <li><Link to="/Booking">Booking</Link></li>
         </ul>
 

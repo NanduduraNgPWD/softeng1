@@ -1,7 +1,7 @@
 
 import { BrowserRouter, Routes, Route} from 'react-router-dom';
 import Home from './pages/Home/Home'
-import Listing from './pages/Listing/Listing'
+import Motorcycles from './pages/Motorcycles/Motorcycles'
 import About from './pages/About/About'
 import Booking from './pages/Booking/Booking'
 import Partner from './pages/Partner/Partner'
@@ -10,7 +10,6 @@ import Login from '../auth/Login/Login'
 import Signup from '../auth/Signup/Signup'
 import SignupBusiness from '../auth/SignupBusiness/SignupBusiness'
 import VehicleDetail from './pages/VehicleDetail/VehicleDetail'
-import AddVehicle from './pages/AddVehicle/AddVehicle'
 
 
 import Registration from './pages/Registration/Registration'
@@ -26,7 +25,7 @@ function CustomerApp() {
       <main>
         <Routes>
           <Route path="/" element={ <Home />} />
-          <Route path="Listing" element={ <Listing />} />
+          <Route path="motorcycles" element={ <Motorcycles />} />
           <Route path="Booking" element={ <Booking />} />
           <Route path="Contact" element={ <Contact />} />
           <Route path="About" element={ <About />} />
@@ -38,9 +37,7 @@ function CustomerApp() {
 
 
           <Route path="SignupBusiness" element={ <SignupBusiness />} />
-          <Route path="/vehicle/:id" element={<VehicleDetail />} />
-          {/* CRUD */}
-          <Route path="AddVehicle" element={ <AddVehicle />} />
+          <Route path="/Motorcycles/:id" element={<VehicleDetail />} />
         </Routes>
       </main>
 

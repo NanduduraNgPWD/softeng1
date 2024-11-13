@@ -1,5 +1,5 @@
 import './Dashboard.css';
-
+import { Link } from 'react-router-dom';
 function Dashboard() {
     const Overview = (props) => (
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={18} height={18} color={"#7284a0"} fill={"none"} {...props}>
@@ -31,34 +31,14 @@ function Dashboard() {
         </svg>
       );
 return(
-    
-    // <div className="dashboard-body  min-h-screen grid place-content-center">
-        
-    //     <div className="bg-emerald-600 rounded-full w-64 h-64  grid place-content-center">
-    //             <div className="grid place-content-center rounded-full w-36 h-36 bg-teal-300">
-    //                     <div className="grid place-content-center rounded-full  rounded-fill w-16 h-16 bg-red-300">
-                
-    //                  </div>
-    //         </div>
 
-    //     </div>
-
-    // </div> 
-    <div className="dashboard-body w-full  bg-slate-50 h-screen">
+    <div className="dashboard-body  bg-slate-50 h-screen">
             <div className="nav w-80 h-full flex flex-col bg-white border-solid border-2 gap-6">
                 <img className="w-28 mx-auto my-4"src="/images/logo1.svg" alt="" />
-                <a href="">
-                    <Overview/>
-                    Overview</a>
-                <a href="">
-                    <Booking/>
-                    Bookings</a>
-                <a href="">
-                <Inventory/>
-                    Inventory</a>
-                <a href="">
-                <Profile/>
-                    Profile</a>
+                <li><Link to="/"> <Overview/>Overview</Link> </li>
+                <li><Link to="/Bookings"><Booking/>Bookings</Link> </li>
+                <li><Link to="/Inventory"><Inventory/>Inventory</Link> </li>
+                <li><Link to="/Profile"><Profile/>Profile</Link> </li>
             </div>
 
     </div>

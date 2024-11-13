@@ -2,14 +2,14 @@ const express = require('express');
 const router = express.Router();
 
 
-const userController = require('../controllers/userController');
+const motorcycleController = require('../controllers/motorcycleController');
 
 
-router.get('/', userController.getAllMotorcycle);
-router.get('/:id', userController.getMotorcycleById);
-router.post('/', userController.createMotorcycle);
-router.put('/:id', userController.updateMotorcycle);
-router.delete('/:id', userController.deleteMotorcycle);
+router.get('/', motorcycleController.getAllMotorcycle);
+router.get('/:id', motorcycleController.getMotorcycleById);
+router.post('/', motorcycleController.createMotorcycle);
+router.put('/:id', motorcycleController.updateMotorcycle);
+router.delete('/:id', motorcycleController.deleteMotorcycle);
 
 
 

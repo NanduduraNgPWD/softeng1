@@ -1,19 +1,15 @@
-import React from "react";
+import React, {useEffect, useState} from 'react'
+import axios from 'axios'
+import Dashboard from '../Dashboard/Dashboard'
 import "./AddVehicle.css";
-import Header from "../../components/Header/Header";
-import Background from "../../components/Background/Background";
-import Footer from "../../components/Footer/Footer";
 
-const header = {
-  title: "Add new scooter",
-  description: "",
-};
+
 
 const AddVehicle = () => (
   <>
-    <Header position="relative" color="#fff" />
-    {/* <Background title={header.title} description={header.description} /> */}
-
+   
+    
+    <Dashboard/>
     <div className="add-form-container">
       <div className="add-title">
         <p id="add-title-1">Create new listing</p>
@@ -114,7 +110,6 @@ const AddVehicle = () => (
         </button>
       </form>
     </div>
-    <Footer />
   </>
 );
 

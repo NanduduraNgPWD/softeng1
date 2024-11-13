@@ -2,15 +2,13 @@ import React, { useState } from 'react';
 import './Filter.css'; 
 
 const Filter = () => {
-  // State for form inputs
+  // State para sa form inputs
   const [motorcycleType, setMotorcycleType] = useState('all');
   const [minPrice, setMinPrice] = useState('');
   const [maxPrice, setMaxPrice] = useState('');
   const [brands, setBrands] = useState([]);
   const [transmission, setTransmission] = useState([]);
   const [colors, setColors] = useState([]);
-  const [engineSize, setEngineSize] = useState([]);
-
   // Handle form submission
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -21,8 +19,7 @@ const Filter = () => {
       maxPrice,
       brands,
       transmission,
-      colors,
-      engineSize
+      colors
     };
     console.log('Filters applied:', filters);
   };
@@ -133,25 +130,6 @@ const Filter = () => {
           </div>
         </div>
 
-        {/* Engine Size Checkboxes */}
-        <div className="form-group">
-          <label>Engine Size (cc)</label>
-          <div className="checkbox-group">
-            {['Below 125cc', '126cc - 250cc', '251cc - 500cc', '501cc - 750cc', '751cc+'].map((size) => (
-              <label key={size}>
-                <input
-                  type="checkbox"
-                  name="engine-size"
-                  value={size.toLowerCase()}
-                  onChange={(e) => handleCheckboxChange(e, setEngineSize, engineSize)}
-                />{' '}
-                {size}
-              </label>
-            ))}
-          </div>
-        </div>
-
-        {/* Submit Button */}
         <button type="submit" className="filter-btn">
           Apply Filters
         </button>
