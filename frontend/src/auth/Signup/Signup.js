@@ -4,8 +4,9 @@ import { Link } from 'react-router-dom';
 function Signup() {
     return (
         <div className="container">
+             <div className="right-panel-signup1"></div>
             <div className="left-panel">
-                <div className="form-container">
+                <div className="form-container1">
                     <div className="header-container">
                         <h1 className="header">Create an account</h1>
                         <Link to="/">
@@ -16,26 +17,42 @@ function Signup() {
                         </Link>
                     </div>
                     <form className="form">
-                        <div className="form-group">
-                            <label className="label">EMAIL ADDRESS</label>
-                            <input type="email" className="input" />
-                        </div>
-                        <div className="form-group">
-                            <label className="label">PASSWORD</label>
-                            <div className="password-container">
-                                <input type="password" className="input" />
-                            </div>
-                        </div>
-                        <div className="form-group">
-                            <label className="label">CONFIRM PASSWORD</label>
-                            <div className="confirm-password-container">
-                                <input type="password" className="input" />
-                            </div>
-                        </div>
-                        <div>
-                            <button type="submit" className="button">LOGIN</button>
-                        </div>
-                    </form>
+    <div className="form-grid">
+        {/* Row 1: First Name and Last Name */}
+        <div className="form-group">
+            <label className="label">FIRST NAME</label>
+            <input type="text" className="input" />
+        </div>
+        <div className="form-group">
+            <label className="label">LAST NAME</label>
+            <input type="text" className="input" />
+        </div>
+
+        {/* Row 2: Email Address and phone */}
+        <div className="form-group">
+            <label className="label">EMAIL ADDRESS</label>
+            <input type="email" className="input" />
+        </div>
+        <div className="form-group">
+            <label className="label">PHONE NUMBER</label>
+            <input type="text" className="input" />
+        </div>
+
+        {/* Row 3: Password and Confirm Password */}
+        <div className="form-group">
+            <label className="label">PASSWORD</label>
+            <input type="password" className="input" />
+        </div>
+        <div className="form-group">
+            <label className="label">CONFIRM PASSWORD</label>
+            <input type="password" className="input" />
+        </div>
+    </div>
+    <div className="form-button">
+        <button type="submit" className="button">REGISTER</button>
+    </div>
+</form>
+
                     <div className="footer">
                         <p className="footer-text">
                             Have an account already? <Link to="/Login" className="footer-link">Login</Link> instead
@@ -43,7 +60,7 @@ function Signup() {
                     </div>
                 </div>
             </div>
-            <div className="right-panel-signup"></div>
+           
         </div>
     );
 }

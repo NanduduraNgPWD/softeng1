@@ -7,8 +7,9 @@ const motorcycleRoutes = require('./routes/motorcycleRoutes');
 const paymentRoutes = require('./routes/paymentRoutes');
 const bookingRoutes = require('./routes/bookingRoutes');
 const things = require('./things');
+const path = require("path");
+require('./jobs/scheduler');
 
-// Use express.json() to parse JSON payloads
 app.use(express.json());
 
 // Set up CORS
@@ -24,6 +25,8 @@ app.use('/users', userRoutes);
 app.use('/motorcycles', motorcycleRoutes);
 app.use('/payments', paymentRoutes);
 app.use('/bookings', bookingRoutes);
+
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // Handle 404 errors
 app.use((req, res) => {

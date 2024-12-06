@@ -11,6 +11,6 @@ router.post('/', motorcycleController.createMotorcycle);
 router.put('/:id', motorcycleController.updateMotorcycle);
 router.delete('/:id', motorcycleController.deleteMotorcycle);
 
-
+// router.get('/available', motorcycleController.displayMotorcycle);
 
 module.exports = router;

@@ -1,22 +1,25 @@
 .add-form-container {
-  width: 100%;
-  background: white;
+  width: min(90%, 1200px);
+  margin: 0 auto;
   height: 850px;
 }
 
 #motorcycleForm {
-  width: min(90%, 1440px);
+  width: min(90%, 1200px);
   margin: 0 auto;
   padding: 2rem;
   border-radius: 8px;
-  display: grid; /* Use grid layout */
-  grid-template-columns: repeat(2, 1fr); /* Two equal columns */
-  gap: 20px; /* Space between columns */
+  display: grid;
+  /* Use grid layout */
+  grid-template-columns: repeat(2, 1fr);
+  /* Two equal columns */
+  gap: 20px;
+  /* Space between columns */
 }
 
 .add-title {
   text-align: center;
-  padding: 3rem 0;
+  padding: 2rem 0;
 }
 
 #add-title-1 {
@@ -44,7 +47,8 @@ label {
 input[type="text"],
 input[type="number"],
 input[type="file"],
-select { /* Add select to input styles */
+select {
+  /* Add select to input styles */
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
@@ -63,4 +67,11 @@ select { /* Add select to input styles */
 
 .addVehicle:hover {
   background-color: #0088ae;
+}
+
+#inventory1{
+  font-size: 2rem;
+  font-weight: 700;
+  color: #232323;
+  gap: .5rem;
 }

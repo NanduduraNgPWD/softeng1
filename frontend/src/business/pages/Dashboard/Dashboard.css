@@ -1,5 +1,6 @@
+
 .nav a {
-    color: #7284a0;
+    color: #2f343c;
     display: flex;
     font-size: 14.8px;
     gap: 0.875rem;
@@ -10,8 +11,9 @@
 
 .nav li {
     list-style: none;
+    padding-left: 1rem;
 }
 
 .dashboard-body {
-    width: 25%;
+    width: 250px;
 }

@@ -1,16 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Dashboard from '../Dashboard/Dashboard';
+import {Pencil, Trash2, CirclePlus} from 'lucide-react'
+import './Inventory.css';
+import { Link } from 'react-router-dom';
 
 const Inventory = () => {
   const [data, setData] = useState([]);
+  
+  // Placeholder owner_id until login functionality is implemented
+  const placeholderOwnerId = 8;
 
   useEffect(() => {
     axios
       .get('http://localhost:3000/motorcycles')
       .then((res) => {
-        console.log(res);
-        setData(res.data || []);
+        const fetchedMotorcycles = res.data || [];
+        // Filter motorcycles based on the placeholder owner_id
+        const ownerMotorcycles = fetchedMotorcycles.filter(
+          (motorcycle) => motorcycle.owner_id === placeholderOwnerId
+        );
+        setData(ownerMotorcycles);
       })
       .catch((err) => console.error("Error fetching motorcycles:", err));
   }, []);
@@ -30,16 +40,17 @@ const Inventory = () => {
 
   // Handler for editing a motorcycle
   const handleEdit = (id) => {
-    // Redirect to an edit page or show an edit form modal
     console.log("Edit motorcycle with ID:", id);
-    // You might want to use a state or a modal to open an edit form here
+    // Add your edit logic here (e.g., open an edit form)
   };
 
   return (
     <>
       <Dashboard />
-      <div className="w-full p-4">
-        <table className="w-full border-collapse border border-gray-300">
+      <div className="booking-body my-4 mx-auto">
+      {/* <span className="hover-text">Add motorcycle</span> */}
+        <div id="inventory"className='my-12'>Your Inventory <div className="add-motorcycle"> <Link to="/business/AddVehicle">  <CirclePlus /> </Link></div></div>
+        <table className="w-full border-collapse border border-gray-300 inventory-table">
           <thead>
             <tr className="bg-gray-200">
               <th className="border border-gray-300 px-4 py-2">Motorcycle ID</th>
@@ -49,7 +60,7 @@ const Inventory = () => {
               <th className="border border-gray-300 px-4 py-2">Color</th>
               <th className="border border-gray-300 px-4 py-2">Price per Day</th>
               <th className="border border-gray-300 px-4 py-2">Available</th>
-              <th className="border border-gray-300 px-4 py-2">Actions</th> {/* New Actions Column */}
+              <th className="border border-gray-300 px-4 py-2">Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -64,19 +75,19 @@ const Inventory = () => {
                 <td className="border border-gray-300 px-4 py-2">
                   {motorcycle.is_available ? 'Yes' : 'No'}
                 </td>
-                <td className=" px-4 py-2 flex w-48">
-                  <button
+                <td className="border border-gray-300 px-4 py-2 flex justify-evenly ">
+                  <div className='cursor-pointer'
                     onClick={() => handleEdit(motorcycle.motorcycle_id)}
-                    className="bg-blue-500 text-white px-2 py-1 mr-2 rounded"
+                   
                   >
-                    Edit
-                  </button>
-                  <button
+              <Pencil />
+                  </div>
+                  <div className='cursor-pointer'
                     onClick={() => handleDelete(motorcycle.motorcycle_id)}
-                    className="bg-red-500 text-white px-2 py-1 rounded"
+                  
                   >
-                    Delete
-                  </button>
+               <Trash2 />
+                  </div>
                 </td>
               </tr>
             ))}

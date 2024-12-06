@@ -1,8 +1,3 @@
-.add-form-container {
-  width: 100%;
-  background: white;
-  height: 850px;
-}
 
 #motorcycleForm {
   width: min(90%, 1440px);
@@ -14,10 +9,6 @@
   gap: 20px; /* Space between columns */
 }
 
-.add-title {
-  text-align: center;
-  padding: 3rem 0;
-}
 
 #add-title-1 {
   font-size: 32px;
@@ -63,4 +54,15 @@ select { /* Add select to input styles */
 
 .addVehicle:hover {
   background-color: #0088ae;
+}
+.actions{
+  display: flex;
+  gap: .5rem;
+  flex-direction: column;
+}
+.decline-button{
+  background-color: rgb(201, 82, 82);
+}
+.booking-item{
+  padding: 10px 20px;
 }

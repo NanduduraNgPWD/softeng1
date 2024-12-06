@@ -15,14 +15,17 @@ function Footer() {
                     <li><Link to="/Listing">Listing</Link></li>
                     <li><Link to="/Booking">Booking</Link></li>
                     <li><Link to="/About">About</Link></li>
+                    <li><Link to="/Login">Login</Link></li>
                 </ul>
             </div>
 
             <div className="footer-section">
                 <h4>Services</h4>
                 <ul>
-                    <li><Link to="/Listing">Rental</Link></li>
+                    <li><Link to="/Motorcycles">Rental</Link></li>
                     <li><Link to="/Partner">Become a partner</Link></li>
+                    <li><Link to="/business">Business Dashboard</Link></li>
+
                 </ul>
             </div>
 

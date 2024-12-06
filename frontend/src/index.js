@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import CustomerApp from './customer/CustomerApp';
@@ -6,15 +7,19 @@ import BusinessApp from './business/BusinessApp';
 import reportWebVitals from './reportWebVitals';
 
 
-const role = "customer";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
   <React.StrictMode>
-          {role === "customer" ?  <CustomerApp />:  
-(
-    <BusinessApp />
-)}
+     <BrowserRouter>
+      <Routes>
+        {/* Customer side: Default route */}
+        <Route path="/*" element={<CustomerApp />} />
+
+        {/* Business side */}
+        <Route path="/business/*" element={<BusinessApp />} />
+      </Routes>
+    </BrowserRouter>
   </React.StrictMode>
 );
 

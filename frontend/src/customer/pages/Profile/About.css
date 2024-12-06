@@ -1,0 +1,113 @@
+.profile-body {
+  height: 1500px;
+  width: min(90%, 1100px);
+  margin: 0 auto;
+}
+
+.profile-section1 {
+  height: 100%;
+}
+
+.personal-info {
+  display: flex;
+  justify-content: space-between;
+  /* padding: 0 0 3rem 0; */
+}
+
+.personal-deets {
+  padding: 2rem 0;
+}
+
+#subheading {
+  font-weight: 400;
+  color: #777777;
+  letter-spacing: 2px;
+  cursor: pointer;
+  font-size: 1.02rem;
+}
+
+.profile-heading {
+  margin: 2rem 0;
+  border-bottom: 1px solid rgb(208, 208, 208);
+  padding-bottom: 2rem;
+}
+
+.profile-pic img {
+  height: 60px;
+  width: 60px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid rgb(255, 255, 255);
+}
+
+.profile-pic p {
+  font-weight: 600;
+  font-size: 1.2rem;
+  padding-bottom: .5rem;
+}
+
+.expandable {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+
+  padding: 0 10px;
+  height: 300px;
+}
+
+.expandable input {
+  margin: 1rem 0;
+  border: unset !important;
+}
+
+.expandable.expanded {
+  max-height: 200px;
+
+  padding: 10px;
+}
+
+#select-img {
+  font-weight: 400;
+  color: #777777;
+  letter-spacing: 2px;
+}
+
+#submit-profile {
+  background-color: unset;
+  border: 1px solid #35788b;
+  color: #35788b;
+  letter-spacing: 2px;
+  font-weight: 700;
+}
+
+.information-child {
+  display: flex;
+  gap: .8rem;
+  padding-bottom: .3rem;
+}
+
+.information-child p {
+  font-weight: 500;
+  font-size: 1rem;
+  color: #616161;
+}
+
+#uploadForm1 label {
+  letter-spacing: 2px;
+  font-size: 1rem;
+}
+
+.expandable1 {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+
+  padding: 0 10px;
+  height: 450px;
+}
+
+.expandable1.expanded1 {
+  max-height: 450px;
+
+  padding: 10px;
+}

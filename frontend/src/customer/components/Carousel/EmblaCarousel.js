@@ -43,7 +43,7 @@ const EmblaCarousel = (props) => {
         {slides.map((index) => (
   <div className="embla__slide" key={index}>
     <img id="carouselimg" src={images[index]} alt={`Slide ${index + 1}`} />
-    <Link to="/Listing">  <svg id='svgbtn' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="36" height="36" color="#eaeaea" fill="none">
+    <Link to="/Motorcycles">  <svg id='svgbtn' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="36" height="36" color="#eaeaea" fill="none">
     <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="1.5" />
     <path d="M14.7731 9.22687L9 15M14.7731 9.22687C14.2678 8.72156 11.8846 9.21665 11.1649 9.22687M14.7731 9.22687C15.2784 9.73219 14.7834 12.1154 14.7731 12.8351" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
 </svg>

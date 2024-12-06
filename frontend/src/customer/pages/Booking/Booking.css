@@ -1,42 +1,88 @@
-.booking-body{
-    height: 1000px;
-    width: min(90%,1200px);
-    margin: 0 auto;
+.booking-body {
+  height: 1000px;
+  width: min(90%, 1200px);
+
 }
-.booking-child{
-    padding: 1rem;
-    display: flex;
-    gap: 2rem;
+
+.booking-child {
+  padding: 1rem;
+  display: flex;
+  gap: 2rem;
+  display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 2rem;
 }
-.booking-child button{
-    border-radius: 25px;
-color: #3d3d3d;
+#booking-title{
+  font-size: 2rem;
+  font-weight: 700;
+  color: #232323;
+}
+.booking-child button {
+  border-radius: 25px;
+  color: #3d3d3d;
 }
 
 .status-buttons button {
-    margin-right: 15px;
-    padding: 10px;
-    width: 120px;
-    border: 1px solid #ccc;
-    background-color: white;
-    cursor: pointer;
-  }
-  .highlighted {
+  margin-right: 15px;
+  padding: 10px;
+  width: 120px;
+  border: 1px solid #ccc;
+  background-color: white;
+  cursor: pointer;
+}
 
-    background-color:#02a4d1!important;
-    color: rgb(237, 237, 237)!important;
-  }
-  .booking-list {
-    margin-top: 20px;
-  }
-  .booking-item {
-    margin-bottom: 10px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    background-color: #f9f9f9;
+.highlighted {
 
-  }
-  #booking-date{
-    font-size: 14px;
-    color: #3d3d3d;
-  }
+  background-color: #02a4d1 !important;
+  color: rgb(237, 237, 237) !important;
+}
+
+.booking-list {
+  margin-top: 20px;
+    padding: 0 1rem;
+}
+
+.booking-item {
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#booking-date {
+  font-size: 14px;
+  color: #3d3d3d;
+}
+
+.booking-list button {
+  height: 40px;
+  width: 150px;
+  padding: unset;
+}
+
+.booking-deets {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+}
+
+.booking-deets svg {
+  display: inline-block;
+  margin: 0 .5rem 0 0;
+}
+
+.booking-deets img {
+  height: 50px;
+  padding: 0 2rem;
+}
+#pastbooking{
+  font-weight: 600;
+  color: #979696;
+  letter-spacing: 2px;
+  cursor: pointer;
+  font-size: .8rem;
+}

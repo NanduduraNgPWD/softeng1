@@ -2,13 +2,25 @@ const db = require('../db/dbConfig');
 
 exports.getAllMotorcycle = async (req, res) => {
   try {
-      const [rows] = await db.query('SELECT * FROM motorcycles WHERE is_deleted = 0');
+    const [rows] = await db.query('SELECT * FROM motorcycles WHERE is_available = 1 AND is_deleted = 0');
       res.json(rows);
   } catch (err) {
       console.error(err);
       res.status(500).send('Database error');
   }
 };
+
+// exports.getAllMotorcycle = async (req, res) => {
+//   try {
+//     const [rows] = await db.query('SELECT * FROM motorcycles WHERE is_deleted = 0');
+//       res.json(rows);
+//   } catch (err) {
+//       console.error(err);
+//       res.status(500).send('Database error');
+//   }
+// };
+
+
 
     
     exports.getMotorcycleById = async (req, res) => {
@@ -27,12 +39,12 @@ exports.getAllMotorcycle = async (req, res) => {
     
     
     exports.createMotorcycle = async (req, res) => {
-        const { owner_id, brand, model, year, color, type, transmission, mileage, vehicle_condition, price_per_day, is_available, image_url } = req.body;
+        const { owner_id, brand, model, year, color, type, transmission, mileage, vehicle_condition, price_per_day, is_available } = req.body;
         
         try {
             const [result] = await db.query(
-                'INSERT INTO motorcycles (owner_id, brand, model, year, color, type, transmission, mileage, vehicle_condition, price_per_day, is_available, image_url) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
-                [owner_id, brand, model, year, color, type, transmission, mileage, vehicle_condition, price_per_day, is_available, image_url]
+                'INSERT INTO motorcycles (owner_id, brand, model, year, color, type, transmission, mileage, vehicle_condition, price_per_day, is_available) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+                [owner_id, brand, model, year, color, type, transmission, mileage, vehicle_condition, price_per_day, is_available]
             );
     
             res.status(201).json({
@@ -45,10 +57,9 @@ exports.getAllMotorcycle = async (req, res) => {
                 type,
                 transmission,
                 mileage,
-                vehicle_condition,
+                vehicle_condition,  
                 price_per_day,
-                is_available,
-                image_url
+                is_available
             });
         } catch (err) {
             console.error(err);  

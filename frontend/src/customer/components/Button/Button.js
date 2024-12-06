@@ -1,8 +1,8 @@
 import './style.css';
 
-function Button({ text }) { 
+function Button({ onClick,text, style }) { 
   return (
-    <button>{text}</button>
+    <button onClick={onClick} style={style}>{text}</button>
   );
 }
 

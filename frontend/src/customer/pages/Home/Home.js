@@ -195,7 +195,7 @@ function Home() {
           <p>
             Book with <br></br>ease
           </p>
-          <Link to="/Listing">
+          <Link to="/Motorcycles">
             {" "}
             <Button text="Browse" />{" "}
           </Link>
@@ -238,8 +238,7 @@ function Home() {
               </svg>
               <h6>Enjoy the ride</h6>
               <p>
-                Lorem ipsum dolor sit amet. Vestibulum tincidunt dui iaculis,
-                molestie metus in, rutrum dui.
+              Discover the freedom of seamless and hassle-free motorcycle rentals.
               </p>
             </div>
             <div className="home-5-box">
@@ -287,7 +286,7 @@ function Home() {
                 />
               </svg>
               <h6>Find the right scooter</h6>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              <p>Explore a wide selection of scooters tailored to your needs and preferences.</p>
             </div>
             <div className="home-5-box">
               <svg
@@ -322,8 +321,7 @@ function Home() {
               </svg>
               <h6>Book affordably</h6>
               <p>
-                Lorem ipsum dolor sit amet. Vestibulum tincidunt dui iaculis,
-                molestie metus in, rutrum dui.
+              Get the best rental deals that fit your budget without compromising quality.
               </p>
             </div>
           </div>

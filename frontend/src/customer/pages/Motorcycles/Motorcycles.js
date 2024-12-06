@@ -54,7 +54,14 @@ const Motorcycles = () => {
                   key={index}
                   onClick={() => handleProductClick(motorcycle.motorcycle_id)}
                 >
-                  <img src="/images/dummy.png" alt="Motorcycle Image"></img>
+                   <img
+  src={`/images/${motorcycle.model}.png`}
+  alt={motorcycle.model}
+  onError={(e) => {
+    e.target.onerror = null; 
+    e.target.src = '/images/dummy1.png'; 
+  }}
+/>
                   <h3>{motorcycle.brand} {motorcycle.model}</h3>
                   <div className="product-info">
                     <p>{motorcycle.year} - {motorcycle.color}</p>
@@ -63,7 +70,7 @@ const Motorcycles = () => {
                 </div>
               ))
           ) : (
-            <p>Loading motorcycles...</p>
+            <p>Oops! All motorcycle are currently booked.</p>
           )}
         </div>
       </div>
