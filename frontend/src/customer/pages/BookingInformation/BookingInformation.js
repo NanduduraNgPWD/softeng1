@@ -57,7 +57,7 @@ function BookingInformation() {
       <div className="BookingInformation">
       <Link to="/Booking"><ArrowLeft color="#212529" className="arrow-back" /></Link>
       
-        <img className="imgbooking"src={vehicle.image || "/images/sample.png"} alt={`${vehicle.brand} ${vehicle.model}`} />
+        <img className="imgbooking"src={vehicle.image || "/images/dummy.png"} alt={`${vehicle.brand} ${vehicle.model}`} />
         <p id="productName" className="booking-title">Booking Information</p>
         <p id="type">{booking.rental_status}</p>
       <div className="booking-detail-info">

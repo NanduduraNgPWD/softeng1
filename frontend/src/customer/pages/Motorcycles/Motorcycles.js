@@ -39,10 +39,10 @@ const Motorcycles = () => {
         </div>
       </section>
       <div className="listing-content">
-        <div className="listing-filter">
+        {/* <div className="listing-filter">
           <Filter />
         </div>
-  
+   */}
         <div className="product-list">
           {data?.length > 0 ? (
      

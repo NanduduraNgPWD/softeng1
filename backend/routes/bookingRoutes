@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const bookingController = require('../controllers/bookingController');
+const authenticateToken = require('../middleware/authenticateToken'); // Correct path
 
 // Existing route to get bookings by customer_id
 router.get('/customer/:id', bookingController.getBookingTransactionByCustomerId);
@@ -9,10 +10,11 @@ router.get('/customer/:id', bookingController.getBookingTransactionByCustomerId)
 // New route to get bookings by owner_id
 router.get('/owner/:id', bookingController.getBookingTransactionByOwnerId);
 
-router.get('/', bookingController.getAllBookingTransaction);
-router.get('/:id', bookingController.getBookingTransactionById);
-router.post('/', bookingController.createBookingTransaction);
-router.put('/:id', bookingController.updateBookingTransaction);
-router.delete('/:id', bookingController.deleteBookingTransaction);
+// Protected routes that require authentication
+router.get('/', bookingController.getAllBookingTransaction, authenticateToken);
+router.get('/:id', bookingController.getBookingTransactionById, authenticateToken);
+router.post('/', bookingController.createBookingTransaction, authenticateToken);
+router.put('/:id', bookingController.updateBookingTransaction, authenticateToken);
+router.delete('/:id', bookingController.deleteBookingTransaction, authenticateToken);
 
 module.exports = router;

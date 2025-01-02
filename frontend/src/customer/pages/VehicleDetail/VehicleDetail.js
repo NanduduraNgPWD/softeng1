@@ -7,14 +7,26 @@ import Footer from "../../components/Footer/Footer";
 import "react-datepicker/dist/react-datepicker.css"; 
 import DatePicker from "react-datepicker";
 import {ArrowLeft} from 'lucide-react'
+import { NotificationManager } from 'react-notifications';
+import { jwtDecode } from 'jwt-decode'; 
 
 const VehicleDetail = () => {
+
+  //user id
+  const token = localStorage.getItem('authToken');
+  
+  if (token) {
+    const decoded = jwtDecode(token);
+    console.log('Decoded Token:', decoded);
+  }
+  const customerId = token ? jwtDecode(token).user_id : null;
+
   const { id } = useParams();
   const [data, setData] = useState([]);
   const [vehicle, setVehicle] = useState(null);
   
-  const [pickup, setPickup] = useState("08:00");
-  const [dropoff, setDropoff] = useState("08:00");
+  const [pickup, setPickup] = useState("12:00");
+  const [dropoff, setDropoff] = useState("12:00");
   const [pickupLocation, setPickupLocation] = useState("");
   const [dropoffLocation, setDropoffLocation] = useState("");
   const [selectedDate, setSelectedDate] = useState(null);
@@ -23,8 +35,9 @@ const VehicleDetail = () => {
 
 
   const ownerId = vehicle ? vehicle.owner_id : null;
-  const customerId = 4; // Placeholder 
+  // const customerId = 4; // Placeholder 
   const rentalStatus = "Pending";
+
 
 
   //direct to the chosen motorcycle
@@ -69,17 +82,17 @@ const VehicleDetail = () => {
       const response = await axios.post('http://localhost:3000/bookings', bookingData);
   
       if (response.status === 201) {
-        alert("Booking created successfully!");
+        NotificationManager.success('Booking has been requested!', 'Success');
       } else {
-        alert("Failed to create booking.");
+        NotificationManager.error('Booking cannot be placed!', 'Error');
       }
     } catch (error) {
-      console.error("Error creating booking:", error);
+    
   
       if (error.response && error.response.data && error.response.data.message) {
-        alert(error.response.data.message); 
+        NotificationManager.error('Booking cannot be placed!', 'Error');
       } else {
-        alert("An error occurred while creating the booking.");
+      
       }
     }
   };
@@ -417,10 +430,48 @@ const VehicleDetail = () => {
               </div>
             </div>
           </div>
+          
           <div className="included-info ">
             <p id="included-info-heading1">Things to keep in mind</p>
             <p id="included-info-heading2">RENTAL POLICIES</p>
             <div className="included policies">
+            <div className="included-item">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  width="36"
+                  height="36"
+                  color="#212529"
+                  fill="none"
+                >
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                  />
+                  <path
+                    d="M11.992 15H12.001"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M12 12L12 8"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+                <p>
+                  {" "}
+                  Pick-up and Drop-off time should only be at 12:00 to 5:00PM{" "}
+                 
+                </p>
+              </div>
               <div className="included-item">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -451,8 +502,8 @@ const VehicleDetail = () => {
                 </svg>
                 <p>
                   {" "}
-                  We require you to have atleast{" "}
-                  <span id="policy-bold">1 Valid ID</span>
+                  We require you to have {" "}
+                  <span id="policy-bold">1 Valid ID and your National ID</span>
                 </p>
               </div>
               <div className="included-item">
@@ -641,16 +692,20 @@ const VehicleDetail = () => {
                 id="pickup"
                 value={pickup}
                 onChange={(e) => setPickup(e.target.value)}
+                  min="12:00"
+  max="17:00"
               />
             </div>
             <div className="pickup-dropoff-content2">
               <label htmlFor="dropoff">DROPOFF</label>
               <input
-                type="time"
-                id="dropoff"
-                value={dropoff}
-                onChange={(e) => setDropoff(e.target.value)}
-              />
+  type="time"
+  id="dropoff"
+  value={dropoff}
+  onChange={(e) => setDropoff(e.target.value)}
+  min="12:00"
+  max="17:00"
+/>
             </div>
           </div>
           <div className="pickup-dropoff">
@@ -682,13 +737,16 @@ const VehicleDetail = () => {
             </div>
           </div>
 
-          <button className="checkout-button" onClick={handleCheckout}>GO TO CHECKOUT</button>
+          <button className="checkout-button"   onClick={() => {
+    handleCheckout();
+  }}>GO TO CHECKOUT</button>
           <p className="best-price">
             Best price <strong>guaranteed.</strong>
           </p>
           <div className="features">
             <p>✔ Free cancellations</p>
             <p>✔ Free amendments</p>
+            
           </div>
         </div>
       </div>

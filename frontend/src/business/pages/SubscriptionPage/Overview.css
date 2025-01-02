@@ -1,0 +1,139 @@
+.overview-container {
+  margin: 3rem 0;
+}
+
+.overview-grid1 {
+  margin: 2rem 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  /* Responsive grid */
+  gap: 20px;
+
+}
+
+.price {
+  font-size: 1.2rem;
+  font-weight: 700;
+  padding-top: 2rem;
+}
+
+.grid-item12 {
+  background: white;
+  padding: 40px 20px;
+  text-align: center;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+  height: 450px;
+  position: relative;
+}
+
+.grid-item h3 {
+  margin: 0 0 10px;
+  color: #333;
+}
+
+.grid-item p {
+  font-size: 24px;
+  font-weight: bold;
+  color: #007bff;
+  /* Highlight color */
+}
+
+.grid-item:hover {
+  transform: scale(1.05);
+  /* Subtle hover effect */
+}
+
+.grid-item.warning {
+  background-color: #fff4f4;
+
+}
+
+.warning {
+  position: relative;
+}
+
+.warning-sign {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  color: #ff4c4c;
+  animation: glow 1.5s infinite;
+  /* Apply glowing animation */
+}
+
+/* Keyframes for glowing effect */
+@keyframes glow {
+
+  0%,
+  100% {
+    text-shadow: 0 0 5px #ff4c4c, 0 0 10px #ff4c4c, 0 0 15px #ff4c4c;
+  }
+
+  50% {
+    text-shadow: 0 0 10px #ff9999, 0 0 20px #ff9999, 0 0 30px #ff9999;
+  }
+}
+
+.wew1 p {
+  font-size: 24px;
+  font-weight: bold;
+  color: #007bff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.subscribebtn {
+  padding: 18px;
+  width: 230px;
+  border-radius: 2px;
+  border: none;
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  background-color: #02a4d1;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.subscribed-btn {
+  background-color: #5e5e5e;
+  /* Green color for "Subscribed" */
+  color: white;
+
+  cursor: not-allowed;
+  /* Disable the cursor on hover */
+}
+
+.subscribed-btn:disabled {
+  background-color: #bbbbbb;
+  /* Light green when disabled */
+  color: #1a1a1a;
+  /* Darker text for the disabled button */
+}
+
+.payment-methods {
+  font-family: Arial, sans-serif;
+  margin: 20px 0;
+}
+
+.payment-option {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.payment-option input[type="radio"] {
+  margin-right: 10px;
+}
+
+.payment-option img {
+  width: 40px;
+  height: auto;
+  margin-right: 10px;
+}

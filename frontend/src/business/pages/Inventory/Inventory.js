@@ -4,12 +4,20 @@ import Dashboard from '../Dashboard/Dashboard';
 import {Pencil, Trash2, CirclePlus} from 'lucide-react'
 import './Inventory.css';
 import { Link } from 'react-router-dom';
-
+import { jwtDecode } from 'jwt-decode'; 
 const Inventory = () => {
+
+  const token = localStorage.getItem('authToken');
+  
+  if (token) {
+    const decoded = jwtDecode(token);
+    console.log('Decoded Token:', decoded);
+  }
+  const placeholderOwnerId = token ? jwtDecode(token).user_id : null;
+
   const [data, setData] = useState([]);
   
-  // Placeholder owner_id until login functionality is implemented
-  const placeholderOwnerId = 8;
+
 
   useEffect(() => {
     axios
@@ -49,7 +57,8 @@ const Inventory = () => {
       <Dashboard />
       <div className="booking-body my-4 mx-auto">
       {/* <span className="hover-text">Add motorcycle</span> */}
-        <div id="inventory"className='my-12'>Your Inventory <div className="add-motorcycle"> <Link to="/business/AddVehicle">  <CirclePlus /> </Link></div></div>
+        <div id="inventory"className='my-12'>Your Inventory <div className="add-motorcycle"> <Link to="/business/AddVehicle">  <CirclePlus /> </Link></div> </div>
+        
         <table className="w-full border-collapse border border-gray-300 inventory-table">
           <thead>
             <tr className="bg-gray-200">

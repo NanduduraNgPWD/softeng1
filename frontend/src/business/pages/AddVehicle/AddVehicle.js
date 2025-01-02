@@ -1,25 +1,47 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import Dashboard from '../Dashboard/Dashboard'
+import { useNavigate } from "react-router-dom";
 import "./AddVehicle.css";
 import {ArrowLeft} from 'lucide-react'
 import { Link } from 'react-router-dom';
+import { NotificationManager } from 'react-notifications';
+import { jwtDecode } from 'jwt-decode'; 
 
 const AddVehicle = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    owner_id: "8", 
+    owner_id: null, // Default to null, will be set after token decode
     brand: "Yamaha",
     model: "",
     year: 2024,
-    color: "black", // Ensure color defaults to a valid value
+    color: "black",
     type: "cruiser",
     transmission: "manual",
     mileage: "",
-    vehicle_condition: "new", // Ensure vehicle_condition defaults to a valid value
+    vehicle_condition: "new",
     price_per_day: "",
     is_available: 1
   });
-  
+
+  // Extract owner_id from the token when the component mounts
+  useEffect(() => {
+    const token = localStorage.getItem('authToken');
+    if (token) {
+      try {
+        const decoded = jwtDecode(token);
+        console.log('Decoded Token:', decoded);
+        setFormData((prevData) => ({
+          ...prevData,
+          owner_id: decoded.user_id, // Set the user_id to formData
+        }));
+      } catch (error) {
+        console.error("Invalid token:", error);
+        // Handle invalid token scenario, if necessary
+      }
+    }
+  }, []); // Empty dependency array ensures this runs once on mount
+
   // Handle form input change
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -28,7 +50,7 @@ const AddVehicle = () => {
       [name]: value,
     });
   };
-  
+
   // Handle form submit
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -36,14 +58,14 @@ const AddVehicle = () => {
       const response = await axios.post("http://localhost:3000/motorcycles", formData, {
         headers: { "Content-Type": "application/json" },
       });
-      console.log("Motorcycle added:", response.data);
-      alert("Motorcycle added successfully!");
+      NotificationManager.success('Registration success!', 'Success');
+      navigate('/business/Inventory');
     } catch (error) {
       console.error("Error adding motorcycle:", error);
       alert("Failed to add motorcycle.");
     }
   };
-  
+
   // Return the JSX
   return (
     <>
@@ -98,12 +120,12 @@ const AddVehicle = () => {
           <div className="form-group-add">
             <label htmlFor="type">Motorcycle Type</label>
             <select id="type" name="type" value={formData.type} onChange={handleChange} required>
-              <option value="cruiser">Cruiser</option>
+            <option value="adventure">Adventure</option>
               <option value="scooter">Scooter</option>
               <option value="sport">Sport</option>
               <option value="touring">Touring</option>
               <option value="dirtbike">Dirt Bike</option>
-              <option value="adventure">Adventure</option>
+              
             </select>
           </div>
   
@@ -127,7 +149,7 @@ const AddVehicle = () => {
               <option value="excellent">Excellent</option>
               <option value="good">Good</option>
               <option value="fair">Fair</option>
-              <option value="poor">Poor</option>
+         
             </select>
           </div>
   

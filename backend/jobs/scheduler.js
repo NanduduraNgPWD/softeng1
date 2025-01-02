@@ -1,8 +1,9 @@
 const schedule = require('node-schedule');
 const db = require('../db/dbConfig');
 
+
 // mark unavailable
-schedule.scheduleJob('0 * * * *', async () => {
+schedule.scheduleJob('0 0 * * *', async () => {
   console.log('Scheduled job: Marking motorcycles as unavailable...');
   const today = new Date().toISOString().split("T")[0];
 
@@ -28,7 +29,7 @@ schedule.scheduleJob('0 * * * *', async () => {
 });
 
 // mark available
-schedule.scheduleJob('0 * * * *', async () => {
+schedule.scheduleJob('0 0 * * *', async () => {
   console.log('Scheduled job: Marking motorcycles as available...');
   const today = new Date().toISOString().split("T")[0];
 
@@ -36,7 +37,7 @@ schedule.scheduleJob('0 * * * *', async () => {
     const [bookings] = await db.query(`
       SELECT motorcycle_id
       FROM bookings
-      WHERE rental_end_date = ? AND rental_status = 'Ongoing'
+      WHERE rental_end_date = ? AND rental_status = 'Completed' AND returned_status = 'Confirmed'
     `, [today]);
 
     for (const booking of bookings) {
@@ -55,7 +56,7 @@ schedule.scheduleJob('0 * * * *', async () => {
 
 
 // set to ongoing
-schedule.scheduleJob('0 * * * *', async () => {
+schedule.scheduleJob('* * * * *', async () => {
     console.log('Scheduled job: Marking motorcycles as available...');
     const today = new Date().toISOString().split("T")[0];
   
@@ -63,8 +64,9 @@ schedule.scheduleJob('0 * * * *', async () => {
       const [upcomingRentals] = await db.query(`
         SELECT booking_id
         FROM bookings
-        WHERE rental_start_date = ? AND rental_status = 'Upcoming'
+        WHERE rental_start_date <= ? AND rental_status = 'Upcoming'
       `, [today]);
+      
   
       for (const rental of upcomingRentals) {
         await db.query(`
@@ -81,7 +83,7 @@ schedule.scheduleJob('0 * * * *', async () => {
   });
 
 // set to complete
-schedule.scheduleJob('0 * * * *', async () => {
+schedule.scheduleJob('* * * * *', async () => {
   console.log('Scheduled job: Marking ongoing bookings as complete...');
   const today = new Date().toISOString().split("T")[0]; // Format today's date as YYYY-MM-DD
 
@@ -90,7 +92,7 @@ schedule.scheduleJob('0 * * * *', async () => {
     const [upcomingRentals] = await db.query(`
       SELECT booking_id
       FROM bookings
-      WHERE rental_end_date = ? AND rental_status = 'Ongoing'
+      WHERE rental_end_date <= ? AND rental_status = 'Ongoing'
     `, [today]);
 
     // Update the status of each booking to 'Completed'
@@ -107,3 +109,4 @@ schedule.scheduleJob('0 * * * *', async () => {
     console.error('Error marking bookings as complete:', error);
   }
 });
+

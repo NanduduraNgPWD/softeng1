@@ -1,15 +1,14 @@
 .listing-content {
-  display: grid;
-  grid-template-columns: 30% 70%;
-  width: min(90%, 1440px);
-  margin: 0 auto;
-  padding: 6rem 0rem;
-  gap: 2rem;
+  display: grid
+  ;
+      width: min(90%, 1300px);
+      margin: 0 auto;
+      padding: 6rem 0rem;
 }
 
 .product-list {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   /* 3 columns */
   grid-template-rows: repeat(4, auto);
   /* 4 rows */

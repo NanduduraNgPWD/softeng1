@@ -1,5 +1,6 @@
 import './Dashboard.css';
 import { Link } from 'react-router-dom';
+import Logout from '../../components/Logout';
 function Dashboard() {
     const Overview = (props) => (
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={18} height={18} color={"#2f343c"} fill={"none"} {...props}>
@@ -33,12 +34,13 @@ function Dashboard() {
 return(
 
     <div className="dashboard-body  bg-slate-50 h-screen">
-            <div className="nav w-full h-screen flex flex-col bg-white border-solid border-2 gap-6">
+            <div className="nav w-full flex flex-col bg-white border-solid border-2 gap-6">
                 <img className="w-28 mx-auto my-4"src="/images/logo1.svg" alt="" />
                 <li><Link to="/business/"> <Overview/>Overview</Link> </li>
                 <li><Link to="/business/Bookings"><Booking/>Bookings</Link> </li>
                 <li><Link to="/business/Inventory"><Inventory/>Inventory</Link> </li>
-                <li><Link to="/"><Profile/>Profile</Link> </li>
+                <li><Link to="/business/Profile"><Profile/>Profile</Link> </li>
+                <li className='logout-btn'><Logout/> Logout</li>
             </div>
 
     </div>

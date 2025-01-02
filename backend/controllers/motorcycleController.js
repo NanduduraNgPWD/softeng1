@@ -38,34 +38,71 @@ exports.getAllMotorcycle = async (req, res) => {
     
     
     
-    exports.createMotorcycle = async (req, res) => {
-        const { owner_id, brand, model, year, color, type, transmission, mileage, vehicle_condition, price_per_day, is_available } = req.body;
-        
-        try {
-            const [result] = await db.query(
-                'INSERT INTO motorcycles (owner_id, brand, model, year, color, type, transmission, mileage, vehicle_condition, price_per_day, is_available) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
-                [owner_id, brand, model, year, color, type, transmission, mileage, vehicle_condition, price_per_day, is_available]
-            );
-    
-            res.status(201).json({
-                motorcycle_id: result.insertId,  
-                owner_id,
-                brand,
-                model,
-                year,
-                color,
-                type,
-                transmission,
-                mileage,
-                vehicle_condition,  
-                price_per_day,
-                is_available
-            });
-        } catch (err) {
-            console.error(err);  
-            res.status(500).send('Database error');
-        }
-    };
+exports.createMotorcycle = async (req, res) => {
+    const { owner_id, brand, model, year, color, type, transmission, mileage, vehicle_condition, price_per_day, is_available } = req.body;
+
+    try {
+        // Check if the owner_id has an active subscription
+        const [subscriptionCheck] = await db.query(
+          `SELECT plan_name
+           FROM subscriptions
+           WHERE user_id = ? 
+           AND status = 'active'`,
+          [owner_id]
+      );
+
+      if (subscriptionCheck.length === 0) {
+          return res.status(403).json({
+              message: 'You do not have an active subscription. Please subscribe to create a listing.'
+          });
+      }
+
+      const planName = subscriptionCheck[0].plan_name;
+
+      // If the plan is 'free', limit the motorcycle count to 2
+      if (planName === 'free') {
+          const [motorcycleCount] = await db.query(
+              `SELECT COUNT(*) as total
+               FROM motorcycles
+               WHERE owner_id = ?
+               AND is_deleted = 0`, // Ensures deleted motorcycles are not counted
+              [owner_id]
+          );
+
+          if (motorcycleCount[0].total >= 2) {
+              return res.status(403).json({
+                  message: 'Free plan users can only post up to 2 motorcycles. Please upgrade your plan to add more listings.'
+              });
+          }
+      }
+        // Insert the new motorcycle listing
+        const [result] = await db.query(
+            `INSERT INTO motorcycles 
+             (owner_id, brand, model, year, color, type, transmission, mileage, vehicle_condition, price_per_day, is_available) 
+             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+            [owner_id, brand, model, year, color, type, transmission, mileage, vehicle_condition, price_per_day, is_available]
+        );
+
+        res.status(201).json({
+            motorcycle_id: result.insertId,
+            owner_id,
+            brand,
+            model,
+            year,
+            color,
+            type,
+            transmission,
+            mileage,
+            vehicle_condition,
+            price_per_day,
+            is_available
+        });
+    } catch (err) {
+        console.error('Error in createMotorcycle:', err);
+        res.status(500).send('Database error');
+    }
+};
+
     
     exports.updateMotorcycle = async (req, res) => {
         const motorcycleId = req.params.id;

@@ -1,7 +1,64 @@
 import './Login.css';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
+import { NotificationManager } from 'react-notifications';
+import { jwtDecode } from 'jwt-decode';
 
-function Login() {
+const Login = () => {
+    const [formData, setFormData] = useState({
+      email: '',
+      password: '',
+    });
+  
+    const navigate = useNavigate();
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({
+          ...formData,
+          [name]: value,
+        });
+      };
+    
+      const handleSubmit = async (e) => {
+        e.preventDefault();
+      
+        try {
+          const response = await axios.post('http://localhost:3000/api/login', formData, {
+            headers: { 'Content-Type': 'application/json' },
+          });
+      
+          if (response.data.token) {
+            // Store the token
+            localStorage.setItem('authToken', response.data.token);
+      
+            // Decode the token to get user_type
+            const decodedToken = jwtDecode(response.data.token);
+            console.log('Decoded Token:', decodedToken); // Verify user_type is present
+      
+            // Redirect based on user_type
+            if (decodedToken.user_type === 'Business') {
+              navigate('/business'); // Navigate to BusinessApp
+            } else if (decodedToken.user_type === 'Customer') {
+              navigate('/'); // Navigate to CustomerApp (default)
+            } else {
+              console.error('Unknown user_type:', decodedToken.user_type);
+            }
+          } else {
+            alert('Invalid credentials.');
+          }
+        } catch (error) {
+          console.error('Error logging in:', error);
+          alert('Failed to log in. Please check your credentials.');
+        }
+      };
+      
+      
+      
+    
+
     return (
         <div className="container">
             <div className="left-panel">
@@ -16,16 +73,30 @@ function Login() {
                         </Link>
                     </div>
                     <h1 className="headerLogin">Welcome back</h1>
-                    <form className="form">
+                    <form onSubmit={handleSubmit}>
                         <div className="form-group">
                             <label className="label">EMAIL ADDRESS</label>
-                            <input type="email" className="input" />
+                            <input
+                             className='input'
+          type="email"
+          name="email"
+          value={formData.email}
+          onChange={handleChange}
+          required
+        />
                         </div>
                         <div className="form-group">
                             <label className="label">PASSWORD</label>
                             <a href="#" className="forgot-password">Forgot password?</a>
                             <div className="password-container">
-                                <input type="password" className="input" />
+                            <input
+                            className='input'
+          type="password"
+          name="password"
+          value={formData.password}
+          onChange={handleChange}
+          required
+        />
                             </div>
                         </div>
                         <div className="checkbox-container">

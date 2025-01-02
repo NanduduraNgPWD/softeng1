@@ -5,20 +5,38 @@ import './index.css';
 import CustomerApp from './customer/CustomerApp';
 import BusinessApp from './business/BusinessApp';
 import reportWebVitals from './reportWebVitals';
-
+import ProtectedRoute from './components/ProtectedRoute';
+import Unauthorized from './components/Unauthorized';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
   <React.StrictMode>
      <BrowserRouter>
-      <Routes>
-        {/* Customer side: Default route */}
-        <Route path="/*" element={<CustomerApp />} />
+     <Routes>
+    {/* Customer Routes */}
+    <Route 
+      path="/*" 
+      element={
+        
+          <CustomerApp />
+       
+      } 
+    />
 
-        {/* Business side */}
-        <Route path="/business/*" element={<BusinessApp />} />
-      </Routes>
+    {/* Business Routes */}
+    <Route 
+      path="/business/*" 
+      element={
+        <ProtectedRoute allowedRoles={['Business']}>
+          <BusinessApp />
+        </ProtectedRoute>
+      } 
+    />
+
+    {/* Unauthorized Access Page */}
+    <Route path="/unauthorized" element={<Unauthorized />} />
+  </Routes>
     </BrowserRouter>
   </React.StrictMode>
 );

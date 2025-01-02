@@ -35,10 +35,10 @@
 }
 
 .booking-item {
+  border: 1px solid #b8b8b8;
   margin-bottom: 10px;
-  padding: 10px;
+  padding: 10px 20px;
   background-color: #fff;
-
 }
 
 #booking-date {

@@ -111,3 +111,27 @@
 
   padding: 10px;
 }
+.expandable2 input {
+  margin: 1rem 0;
+  border: unset !important;
+}
+
+.expandable2 {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+
+  padding: 0 10px;
+  height: 450px;
+}
+.expandable2.expanded2 {
+  max-height: 450px;
+
+  padding: 10px;
+}
+
+.logout-icon{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
